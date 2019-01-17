@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises 2, 4.</title>
+</head>
+<body>
+
+<button id="nappi">Arvo lottorivi</button>
+<p id="numerot"></p>
+
+
+<script language="JavaScript">
+  'use strict';
+
+  let lista = [];
+  let maara = 7;
+
+  function drawNumber(max) {
+    let low = 1;
+    let high = 40;
+    return Math.floor(Math.random() * high) + low;
+  }
+
+  let luku;
+
+  for (let i=0; i<maara; i++) {
+    luku = drawNumber();
+    valueIsIn();
+    if (false) {
+      lista.push(luku);
+    }
+  }
+
+  /*for (let i=0; i<maara; i++){
+    luku = drawNumber();
+    if (lista.includes(luku)) {
+      i--;
+    } else {
+    lista.push(luku);
+  }
+  }*/
+
+  function valueIsIn(a, v) {
+    lista = a;
+    luku = v;
+    console.log(a);
+    for (let i=0; i<length; i++);
+    if (a[i] === v){
+      return true;
+    }
+    return false;
+  }
+
+  console.log(lista);
+
+  document.getElementById('nappi').addEventListener('click', function naytaLuvut() {
+    document.getElementById('numerot').innerHTML = lista.sort();
+  });
+
+
+
+</script>
+
+</body>
+</html>

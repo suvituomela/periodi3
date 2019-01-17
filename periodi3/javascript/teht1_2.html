@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises 1, 2.</title>
+</head>
+<body>
+
+<input type="text" id="eka" placeholder="Osoittaja">
+<input type="text" id="toka" placeholder="Nimittäjä">
+<br>
+<button id="nappi">Laske</button>
+<p id="teksti"></p>
+<br>
+
+<script language="JavaScript">
+  'use strict';
+
+  document.getElementById('nappi').addEventListener('click', function gcd(osoittaja, nimittaja) {
+    let txt;
+    const os = document.getElementById('eka').value;
+    const nim = document.getElementById('toka').value;
+    osoittaja = Math.abs(os);
+    nimittaja = Math.abs(nim);
+    if (isNaN(osoittaja) || isNaN(nimittaja)) {
+      txt = ('Undefined');
+      document.getElementById('teksti').innerHTML = txt;
+      return;
+    }
+    while (nimittaja) {
+      let t = nimittaja;
+      nimittaja = osoittaja % nimittaja;
+      osoittaja = t;
+    }
+    txt = ('Suurin yhteinen tekijä on: ' + osoittaja + ' ja sievennetty murtoluku on: ' + os / osoittaja + '/' + nim /
+        osoittaja);
+    document.getElementById('teksti').innerHTML = txt;
+  });
+
+</script>
+
+</body>
+</html>

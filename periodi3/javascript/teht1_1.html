@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises 1, 1.</title>
+
+  <script language="JavaScript">
+  'use strict';
+
+  function bmi () {
+    let pituus = Number(document.getElementById("pituus").value);
+    let paino = Number(document.getElementById("paino").value);
+    let tulos = paino / (pituus/100 * pituus/100);
+    if (tulos>0) {
+     return document.getElementById("tulos").innerHTML = "Painoindeksisi on: " + tulos;
+    } else {
+      return document.getElementById("tulos").innerHTML = "Painoindeksisi on: Undefined"
+    }
+  }
+
+</script>
+</head>
+
+<body>
+
+<form>
+    <input id="paino" type="text" placeholder="Painosi"/>
+    <br />
+    <input id="pituus" type="text" placeholder="Pituutesi"/>
+    <br />
+    <br />
+
+    <input class="submit" type="button" value="Laske painoindeksi" onclick="bmi()"/>
+    <p id="tulos"></p>
+</form>
+
+</body>
+</html>

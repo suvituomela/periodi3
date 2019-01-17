@@ -1,0 +1,169 @@
+#liikennevalo {
+    background-color: black;
+    border: 5px solid grey;
+    border-radius: 7px;
+    width: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+}
+
+#pun {
+    background-color: red;
+    border-radius: 100px;
+    width: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid;
+    box-shadow: 0 2px 2px 2px black inset;
+    background:
+            -webkit-radial-gradient(black 15%, transparent 16%),
+            red;
+    background-position: 0 0, 5px 5px;
+    background-size:6px 6px;
+}
+
+#kelt {
+    background-color: yellow;
+    border-radius: 100px;
+    width: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid;
+    box-shadow: 0 2px 2px 2px black inset;
+    background:
+            -webkit-radial-gradient(black 15%, transparent 16%),
+            yellow;
+    background-position: 0 0, 5px 5px;
+    background-size:6px 6px;
+}
+
+#vihr {
+    background-color: green;
+    border-radius: 100px;
+    width: 40px;
+    display: block;      
+    margin-left: auto;   
+    margin-right: auto;
+    border: 2px solid;
+    box-shadow: 0 2px 2px 2px black inset;
+    background:
+            -webkit-radial-gradient(black 15%, transparent 16%),
+            green;
+    background-position: 0 0, 5px 5px;
+    background-size:6px 6px;
+}
+
+#keppi {
+    background-color: black;
+    width: 1px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#tolppa {
+    position: fixed;
+    top: 45%;
+    right: 25%;
+    z-index: 2;
+}
+
+.center {
+    height: 120px;
+    padding: 5px;
+}
+
+#pun:hover {
+  background-color: deeppink;
+}
+
+#pun:active {
+    background-color: black;
+}
+
+#kelt:hover {
+  background-color: deeppink;
+}
+
+#kelt:active {
+    background-color: black;
+}
+
+#vihr:hover {
+  background-color: deeppink;
+}
+
+#vihr:active {
+    background-color: black;
+}
+
+#taivas {
+    background-image: linear-gradient(blue, white);
+    background-repeat: no-repeat;
+    height: 900px;
+
+}
+
+#aurinko {
+    background-image: radial-gradient(red, orange, yellow);
+    width: 80px;
+    height: 80px;
+    background-color: red;
+    border-radius: 100px;
+    box-shadow: 4px 0 4px 0 yellow;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+
+}
+
+#ekamaa {
+    background-color: aliceblue;
+    width: 100%;
+    height: 400px;
+    z-index: 3;
+    bottom: 0%;
+    position: fixed;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 100%;
+}
+
+#tokamaa {
+    background-color: azure;
+    width: 100%;
+    height: 500px;
+    z-index: 1;
+    bottom: 0%;
+    position: fixed;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 2%;
+}
+
+#laatikko {
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 1px solid red;
+    width: 200px;
+    height: 150px;
+    left: 20%;
+    bottom: 20%;
+    z-index: 4;
+    position: fixed;
+    border-radius: 25px;
+}
+
+h1 {
+    font-family: 'Amatic SC', cursive;
+    font-size: 60px;
+    padding-top: 0;
+    position: fixed;
+    top: 10%;
+    left: 15%;
+}
+
+p {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 10px;
+    text-align: center;
+}
