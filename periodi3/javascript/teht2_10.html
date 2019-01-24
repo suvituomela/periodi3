@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises 2, 10.</title>
+</head>
+<body>
+<p>Valitse pienin ja suurin luku, niin arvotaan niiden väliltä jokin numero.</p>
+<input type="text" id="pieni" placeholder="Anna pienin luku">
+<input type="text" id="iso" placeholder="Anna suurin luku">
+<button id="nappi">Arvo numero</button>
+<p id="tulos"></p>
+
+<script language="JavaScript">
+  'use strict';
+
+  let nappula = document.querySelector('button');
+
+  function rndIntFromTo(pieni, iso) {
+    let pienin = document.getElementById('pieni').value;
+    let isoin = document.getElementById('iso').value;
+    pieni = Math.abs(pienin);
+    iso = Math.abs(isoin);
+    console.log(pienin + isoin);
+    return document.getElementById('tulos').innerHTML = "Sattumanvaraisesti arvottu numero on: " + drawNumber();
+  }
+
+  function drawNumber(max) {
+    let pienin = Number(document.getElementById('pieni').value);
+    let isoin = Number(document.getElementById('iso').value);
+    return Math.floor(Math.random() * isoin) + pienin;
+  }
+
+  nappula.addEventListener('click', rndIntFromTo);
+
+
+</script>
+
+</body>
+</html>

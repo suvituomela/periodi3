@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises 2, 9.</title>
+</head>
+<body>
+
+<input type="text" id="maara" placeholder="Listan lukujen määrä">
+<button id="nappi">Selvitä moodi</button>
+<p id="tulos"></p>
+
+<script language="JavaScript">
+  'use strict';
+
+  let nappula = document.querySelector('button');
+
+  function returnMode(luku){
+    let maara = document.getElementById('maara').value;
+    luku = Math.abs(maara);
+    console.log(maara);
+    let lista = [];
+
+    for (let i=0; i<maara; i++){
+      let numero = drawNumber();
+      lista.push(numero);
+    }
+    console.log(lista);
+    let moodi = find_mode(lista);
+    console.log(moodi);
+    document.getElementById('tulos').innerHTML = "Listan moodi on: " + moodi;
+  }
+
+  function drawNumber(max) {
+    let low = 1;
+    let high = 40;
+    return Math.floor(Math.random() * high) + low;
+  }
+
+  function find_mode(arr) {
+    var mode = {};
+    var max = 0, count = 0;
+
+    arr.forEach(function(e) {
+      if (mode[e]) { mode[e]++; }
+      else { mode[e] = 1; }
+
+      if (count<mode[e]) {
+        max = e;
+        count = mode[e];
+      }
+    });
+
+    return max;
+  }
+
+  nappula.addEventListener('click', returnMode);
+
+
+</script>
+
+</body>
+</html>
