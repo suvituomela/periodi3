@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parallax</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Gloria+Hallelujah" rel="stylesheet">
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            background:#F5F6F8;
+            height: 100vh;
+        }
+
+        .wrapper{
+
+            width:100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(uusitausta.jpg) no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+        }
+
+
+        #kala{
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            width:325px;
+            height: 211px;
+        }
+
+        #hiiri, #hiiri-center {
+            color: antiquewhite;
+            margin-top: 10px;
+        }
+
+        .laatikko {
+            background-color: rgba(255, 0, 0, 0.2);
+            border: 1px solid red;
+            width: 200px;
+            height: 200px;
+            left: 40%;
+            bottom: 15%;
+            position: fixed;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Amatic SC', cursive;
+            font-size: 60px;
+            padding-top: 0;
+            position: fixed;
+            top: 10%;
+            left: 15%;
+        }
+
+        @media screen and (min-width: 500px) {
+            #kala {
+                width: 150px;
+                height: 100px;
+            }
+        }
+
+        @media screen and (min-width: 650px) {
+            #kala {
+                width: 250px;
+                height: 200px;
+            }
+        }
+
+        @media screen and (min-width: 900px) {
+            #kala {
+                width: 350px;
+                height: 300px;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="wrapper">
+    <h1>Kalakalakala</h1>
+    <div><img id="kala" src="kala2.png"></div>
+    <div class="laatikko">
+        <div id="hiiri"></div><br>
+        <div id="hiiri-center"></div>
+    </div>
+</div>
+</body>
+
+<script>
+
+  const wrapper = document.querySelector('.wrapper');
+  const kala = document.querySelector('#kala');
+  const hiiri = document.querySelector('#hiiri');
+  const hiiri_center = document.querySelector('#hiiri-center');
+
+  const cx = wrapper.clientWidth/2;
+  const cy = wrapper.clientHeight/2;
+
+  document.addEventListener('mousemove', (evt) => {
+
+    let mouseX = evt.clientX,
+        mouseY = evt.clientY;
+
+    let coor = "Oikeasta yläkulmasta<br> X: " + mouseX + ", Y: " + mouseY;
+    hiiri.innerHTML = coor;
+
+    let from_center_x = cx - mouseX;
+    let from_center_y = cy - mouseY;
+
+    let coor2 = "Keskeltä<br> X: " + from_center_x + ", Y: " + from_center_y;
+    hiiri_center.innerHTML = coor2;
+
+    kala.style.transform = 'translateX(' + from_center_x/10 + '%) translateY(' + from_center_y/10 + '%)';
+
+
+  });
+
+</script>
+</html>
