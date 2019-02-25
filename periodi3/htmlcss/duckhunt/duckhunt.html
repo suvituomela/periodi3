@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duckhunt</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            background:#F5F6F8;
+            height: 100vh;
+            background: url(stage.png) no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #koira {
+            background: url(sprite.png) 0 0;
+            width: 120px;
+            height: 100px;
+            bottom: 10%;
+            position: fixed;
+            animation-name: dogwalk;
+            animation-duration: 4s;
+        }
+
+        @keyframes dogwalk {
+            0%   {background: url(sprite.png) 0 0; left:0px; bottom:10%;}
+            25%  {background: url(sprite.png) 0 0; left:250px; bottom:10%;}
+            50%  {background: url(sprite.png) 0 0; left:500px; bottom:10%;}
+            75%  {background: url(sprite.png) 0 0; left:750px; bottom:10%;}
+            100% {background: url(sprite.png) 0 0; left:1000px; bottom:10%;}
+        }
+    </style>
+</head>
+<body>
+
+<div id="koira"></div>
+
+</body>
+</html>
