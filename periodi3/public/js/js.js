@@ -5,12 +5,11 @@ function etsiRuokaa() {
             console.log(series);
             const app = document.getElementById('app');
             app.innerHTML = series.map(({name, price}) => `
-<div class="container">
+           
             <div>
-               <h4>${name}</h4>
-                    <h7>${price}</h7><br> 
+               <h3>${name}</h3>
+                    <h4>${price}</h4><br> 
                </div>
-                 </div>
                  
 `).join('');
         })
