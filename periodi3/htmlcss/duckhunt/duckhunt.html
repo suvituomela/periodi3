@@ -1,41 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Duckhunt</title>
-    <style>
-        body{
-            margin:0;
-            padding:0;
-            box-sizing: border-box;
-            background:#F5F6F8;
-            height: 100vh;
-            background: url(stage.png) no-repeat center center fixed;
-            background-size: cover;
-        }
-
-        #koira {
-            background: url(sprite.png) 0 0;
-            width: 120px;
-            height: 100px;
-            bottom: 10%;
-            position: fixed;
-            animation-name: dogwalk;
-            animation-duration: 4s;
-        }
-
-        @keyframes dogwalk {
-            0%   {background: url(sprite.png) 0 0; left:0px; bottom:10%;}
-            25%  {background: url(sprite.png) 0 0; left:250px; bottom:10%;}
-            50%  {background: url(sprite.png) 0 0; left:500px; bottom:10%;}
-            75%  {background: url(sprite.png) 0 0; left:750px; bottom:10%;}
-            100% {background: url(sprite.png) 0 0; left:1000px; bottom:10%;}
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 </head>
-<body>
 
-<div id="koira"></div>
+<style>
 
+    body {
+        font-family: 'Press Start 2P', cursive;
+        margin: 0;
+        padding: 0;
+        cursor: crosshair;
+    }
+
+    h1 {
+        font-size: 50px;
+        color: white;
+        text-align: center;
+        position: relative;
+        margin: auto;
+        padding-top: 100px;
+    }
+
+    #stageBack {
+        width: 800px;
+        height: 481px;
+        background: url(stage-back.png);
+        background-size: contain;
+        margin: auto;
+        position: relative;
+    }
+
+    #stageFront {
+        pointer-events: none;
+        width: 800px;
+        height: 481px;
+        background: url(stage-front.png);
+        background-size: contain;
+        margin: auto;
+        position: relative;
+    }
+
+    #bang {
+        display: none;
+        width: 800px;
+        height: 481px;
+        background: url(bang.png);
+        background-size: contain;
+        margin: auto;
+        position: relative;
+    }
+
+    #birdAm {
+        font-size: 10px;
+        color: white;
+        text-align: left;
+        position: relative;
+        padding-left: 5px;
+    }
+
+    .butt {
+        font-size: 30px;
+        font-family: 'Press Start 2P', cursive;
+        color: white;
+        background: none;
+        width: 200px;
+        height: 100px;
+        position: absolute;
+        display: block;
+        top: 120px;
+        left: 300px;
+        margin: auto;
+    }
+
+    .global {
+        pointer-events: none;
+    }
+
+    .ammo {
+        width: 60px;
+        height: 20px;
+        position: relative;
+        display: inline-block;
+        background: url(ammo.png) no-repeat 0 0;
+        top: 0;
+        left: 0;
+    }
+
+    .bird {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        background: url(sprite.png) no-repeat 0 0;
+        transition: top 3s linear, bottom 3s linear, left 3s linear, right 3s linear;
+        bottom: 50px;
+    }
+
+    .dog {
+        width: 120px;
+        height: 110px;
+        position: absolute;
+        background: url(sprite.png) no-repeat 0 0;
+        bottom: 50px;
+        left: 10px;
+        transition: all 1.5s linear;
+    }
+
+    .dog2 {
+        width: 120px;
+        height: 110px;
+        position: absolute;
+        background: url(sprite.png) no-repeat 0 0;
+        bottom: 30px;
+        left: 340px;
+        transition: all 0.7s linear;
+        animation: dogtrophy 5s steps(1) infinite;
+    }
+
+    .dogLaugh {
+        animation: doglaugh 0.2s steps(2) infinite alternate;
+    }
+
+    .startLeft {
+        bottom: 50px;
+        left: 100px;
+    }
+
+    .startRight {
+        bottom: 50px;
+        left: 700px;
+    }
+
+    .dogAnimations {
+        animation: dogwalk 0.5s steps(4) 3,
+        dogsniff 0.5s 1.5s steps(2) 3,
+        dogjump 1s 3s steps(3) 1,
+        dogdissapear 0.5s 4s steps(1) infinite;
+    }
+
+    .birdAnimations {
+        animation: birdflyHor 0.5s steps(3) infinite alternate;
+    }
+
+    .birdAnimations2 {
+        animation: birdShot 1s steps(1) 1,
+        birdDeath 0.35s 1s steps(2) infinite;
+    }
+
+    .birdAnimations3 {
+        animation: birdflyAngl 0.5s steps(3) infinite alternate;
+    }
+
+    .birdflyRight {
+        left: 1000px;
+        bottom: 800px;
+    }
+
+    .birdflyLeft {
+        left: -200px;
+        bottom: 800px;
+        transform: scaleX(-1);
+    }
+
+    .dogwalk {
+        left: 300px;
+    }
+
+    @keyframes ammoSprite {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: -240px -220px;
+        }
+    }
+
+    @keyframes birdflyHor {
+        from {
+            background-position: 0 -220px;
+        }
+        to {
+            background-position: -240px -220px;
+        }
+    }
+
+    @keyframes birdflyAngl {
+        from {
+            background-position: 0 -300px;
+        }
+        to {
+            background-position: -240px -300px;
+        }
+    }
+
+    @keyframes birdShot {
+        from {
+            background-position: 0 -460px;
+        }
+        to {
+            background-position: 0 -460px;
+        }
+    }
+
+    @keyframes birdDeath {
+        from {
+            background-position: -80px -460px;
+        }
+        to {
+            background-position: -240px -460px;
+        }
+    }
+
+    @keyframes dogwalk {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: -480px 0;
+        }
+    }
+
+    @keyframes dogsniff {
+        from {
+            background-position: -360px 0;
+        }
+        to {
+            background-position: -600px 0;
+        }
+    }
+
+    @keyframes dogjump {
+        from {
+            background-position: 0 -110px;
+        }
+        to {
+            background-position: -360px -110px;
+        }
+    }
+
+    @keyframes dogtrophy {
+        from {
+            background-position: -650px 0;
+        }
+        to {
+            background-position: -650px 0;
+        }
+    }
+
+    @keyframes dogdissapear {
+        from {
+            background-position: 0 -600px;
+        }
+        to {
+            background-position: 0 -600px;
+        }
+    }
+
+    @keyframes doglaugh {
+        from {
+            background-position: -360px -110px;
+        }
+        to {
+            background-position: -600px -110px;
+        }
+    }
+
+
+</style>
+<body id="global">
+<div id="stageBack">
+    <div class="dog2"></div>
+    <div class="bird" id="birdie"></div>
+    <Button class="butt" id="start" onclick="startGame()">Start Game</Button>
+    <div id="stageFront">
+        <div class="ammo"></div>
+        <p id="birdAm"></p>
+        <div class="dog" id="doggie"></div>
+        <div id="bang"></div>
+        <h1 id="round"></h1>
+    </div>
+</div>
+
+<script>
+  function startGame() {
+    document.getElementById('start').remove();
+
+    start();
+    startFly();
+    birdDir();
+
+    let dog = document.querySelector('.dog');
+    let dog2 = document.querySelector('.dog2');
+    let bird = document.querySelector('.bird');
+    let stage = document.querySelector('#stageBack');
+    var round = 1;
+    let shotAmount = 0;
+    let birdAmount = 0;
+
+    document.getElementById('global').classList.add('global');
+    document.getElementById('birdAm').innerHTML = 'Birds: ' + birdAmount;
+    dog.classList.add('dogAnimations');
+    bird.addEventListener('click', shotFunction);
+    setTimeout(() => {
+      stage.addEventListener('click', shotAddition);
+    }, 50);
+    function mathRand(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function start() {
+      let startPos = mathRand(1, 3);
+      document.getElementById('round').innerHTML = 'Round' + '<br>' + '1';
+      setTimeout(() => {
+        document.getElementById('round').style.display = 'none';
+      }, 3000);
+      setTimeout(() => {
+        dog.classList.add('dogwalk');
+      }, 50);
+      setTimeout(() => {
+        dog.style.bottom = '150px';
+      }, 3300);
+      if (startPos < 2) {
+        setTimeout(() => {
+          bird.classList.add('startLeft');
+        }, 50);
+        setTimeout(() => {
+          bird.classList.add('birdflyRight');
+          document.getElementById('global').classList.remove('global');
+        }, 4000);
+      }
+      if (startPos > 1) {
+        setTimeout(() => {
+          bird.classList.add('startRight');
+          bird.style.transform = 'scaleX(-1)';
+        }, 50);
+        setTimeout(() => {
+          bird.classList.add('birdflyLeft');
+          document.getElementById('global').classList.remove('global');
+        }, 4000);
+      }
+    }
+
+    function startFly() {
+      setTimeout(() => {
+        bird.classList.add('birdAnimations3');
+      }, 50);
+    }
+
+    function birdDir() {
+      setTimeout(() => {
+        window.setInterval(function() {
+          if (bird.classList.contains('birdAnimations2')) {
+            setTimeout(() => {
+              setTimeout(() => {
+                bird.style.bottom = '50px';
+              }, 50);
+              setTimeout(() => {
+                bird.style.transition = 'bottom 1s linear';
+              }, 50);
+            }, 1000);
+          }
+          if (getComputedStyle(bird).left <= '0px') {
+            bird.style.left = '900px';
+            bird.style.transform = 'scaleX(1)';
+          }
+          if (getComputedStyle(bird).right <= '0px') {
+            bird.style.left = '0px';
+            bird.style.transform = 'scaleX(-1)';
+          }
+          if (getComputedStyle(bird).bottom <= '100px') {
+            bird.style.bottom = mathRand(500, 700) + 'px';
+            bird.classList.remove('birdAnimations');
+            bird.classList.add('birdAnimations3');
+          }
+          if (getComputedStyle(bird).top <= '0px') {
+            bird.style.bottom = mathRand(-200, -20) + 'px';
+            bird.classList.remove('birdAnimations3');
+            bird.classList.add('birdAnimations');
+          }
+        }, 50);
+      }, 5000);
+    }
+
+    function shotAddition() {
+      if (shotAmount < 3) {
+        document.querySelector('.ammo').style.display = 'none';
+        document.querySelector('#birdAm').style.display = 'none';
+        document.querySelector('#bang').style.display = 'block';
+        setTimeout(() => {
+          document.querySelector('.ammo').style.display = 'inline-block';
+          document.querySelector('#birdAm').style.display = 'block';
+          document.querySelector('#bang').style.display = 'none';
+        }, 300);
+      }
+      shotAmount += 1;
+      console.log(shotAmount);
+      if (shotAmount === 0) {
+        document.querySelector('.ammo').style.width = '60px';
+      }
+      if (shotAmount === 1) {
+        document.querySelector('.ammo').style.width = '40px';
+      }
+      if (shotAmount === 2) {
+        document.querySelector('.ammo').style.width = '20px';
+      }
+      if (shotAmount >= 3) {
+        document.getElementById('global').classList.add('global');
+        document.querySelector('.ammo').style.width = '0px';
+        document.getElementById('round').style.display = 'block';
+        document.getElementById('round').innerHTML = 'GAME OVER';
+        document.getElementById('birdie').remove();
+        document.getElementById('doggie').remove();
+        dog2.style.bottom = '100px';
+        dog2.classList.add('dogLaugh');
+      }
+    }
+
+    function shotFunction() {
+      ++birdAmount;
+      --shotAmount;
+      ++round;
+      document.getElementById('birdAm').innerHTML = 'Birds: ' + birdAmount;
+      document.getElementById('global').classList.add('global');
+      setTimeout(() => {
+        bird.style.left = getComputedStyle(bird).left;
+        bird.style.bottom = getComputedStyle(bird).bottom;
+        bird.classList.remove('birdAnimations3');
+        bird.classList.add('birdAnimations2');
+      }, 50);
+      setTimeout(() => {
+        dog2.style.bottom = '100px';
+        setTimeout(() => {
+          dog2.style.bottom = '30px';
+        }, 1500);
+        document.getElementById('round').style.display = 'block';
+        if (round <= 3) {
+          document.getElementById('round').innerHTML = 'Round' + '<br>' + round;
+          setTimeout(() => {
+            document.getElementById('round').style.display = 'none';
+          }, 3000);
+          bird.classList.remove('birdAnimations2');
+          setTimeout(() => {
+            bird.removeAttribute('style');
+            bird.classList.add('birdAnimations3');
+            document.getElementById('global').classList.remove('global');
+          }, 3000);
+        }
+      }, 3000);
+      if (birdAmount === 3) {
+        document.getElementById('global').classList.add('global');
+        document.getElementById('round').style.display = 'block';
+        document.getElementById('round').innerHTML = 'YOU WON';
+      }
+    }
+  }
+
+</script>
 </body>
 </html>
